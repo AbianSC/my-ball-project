@@ -12,7 +12,6 @@ Un pequeño juego creado en **Unity** donde controlas una bola que se mueve por 
 - Contador de objetos recogidos en pantalla (UI con TextMeshPro)
 - Mensaje de victoria al completar los 10 pickups
 - Reinicio automático de la escena al ganar o caer del escenario
-- Creador: *[Tu nombre completo]*
 
 ---
 
