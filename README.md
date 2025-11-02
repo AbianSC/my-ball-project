@@ -1,6 +1,6 @@
 ﻿# My Ball Project
 
-Un pequeño juego creado en **Unity** donde controlas una bola que se mueve por el escenario, recoge objetos ("pickups") y evita caer fuera del mapa. Al recolectar todos los objetos, ganas y la partida se reinicia automáticamente.
+Un pequeño juego creado en **Unity** donde controlas una bola que se mueve por el escenario, recoge objetos ("pickups"), evita caer fuera del mapa o ser pillado por el enemigo. Al recolectar todos los objetos, ganas y la partida se reinicia automáticamente.
 
 ---
 
@@ -44,6 +44,7 @@ Assets/
 ├── Scripts/
 │ ├── PlayerController.cs
 │ ├── CameraController.cs
+│ ├── EnemyMovement.cs
 │ └── Rotator.cs
 └── UI/
 └── TextMeshPro objects
@@ -62,6 +63,10 @@ Hace que la cámara siga suavemente a la bola.
 
 ### `Rotator.cs`
 Hace girar los pickups para darles dinamismo visual.
+
+### `EnemyMovement.cs`
+Controla la inteligencia artificial del enemigo mediante NavMeshAgent.  
+Persigue al jugador y reinicia la partida al colisionar con él.
 
 ---
 
