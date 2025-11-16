@@ -1,27 +1,42 @@
 ﻿# My Ball Project
 
-Un pequeño juego creado en **Unity** donde controlas una bola que se mueve por el escenario, recoge objetos ("pickups"), evita caer fuera del mapa o ser pillado por el enemigo. Al recolectar todos los objetos, ganas y la partida se reinicia automáticamente.
+Un pequeño juego creado en **Unity** donde controlas una bola que se mueve por el escenario, recoge objetos ("pickups"), evita caer fuera del mapa y escapa de un enemigo controlado por **IA con NavMeshAgent**.  
+El juego incluye un menú inicial, cambio de escenas, botón de reinicio y un sistema de victoria basado en recoger todos los objetos.
 
 ---
 
 ## Características
 
-- Movimiento de la bola con el teclado (usando el **Nuevo Input System**)
+- Movimiento fluido del jugador usando el **Nuevo Input System**
 - Salto con la tecla **Espacio**
-- Recolección de objetos que desaparecen al tocarlos
-- Contador de objetos recogidos en pantalla (UI con TextMeshPro)
-- Mensaje de victoria al completar los 10 pickups
-- Reinicio automático de la escena al ganar o caer del escenario
+- Recolección de pickups que desaparecen al tocarlos
+- Contador de objetos recogidos (UI con TextMeshPro)
+- Mensaje de victoria
+- Reinicio automático o mediante botón
+- Cambio de escenas (Menú → Juego → Menú)
+- Enemigo con IA que persigue al jugador usando **NavMesh + NavMeshAgent**
+- Colisión con el enemigo produce un reinicio de la partida
+- Diseño simple y educativo basado en el clásico Roll-a-Ball
 
 ---
 
 ## Controles
 
-| Acción | Tecla |
-|--------|-------|
-| Mover la bola | Flechas |
-| Saltar | Barra espaciadora |
-| Reiniciar (automático) | Al ganar o caer |
+| Acción              | Tecla               |
+|--------------------|---------------------|
+| Mover la bola      | Flechas del teclado |
+| Saltar             | Barra espaciadora   |
+| Reiniciar partida  | Botón Restart / Auto |
+| Empezar partida    | Botón “Start Game” en el menú |
+
+---
+
+## 🧩 Escenas del proyecto
+
+| Escena          | Descripción |
+|-----------------|-------------|
+| **Menu.unity**  | Pantalla inicial con botón para comenzar el juego |
+| **MiniGame.unity** | Nivel principal donde se juega la partida |
 
 ---
 
@@ -36,17 +51,20 @@ Un pequeño juego creado en **Unity** donde controlas una bola que se mueve por 
 ## Estructura del proyecto
 
 Assets/
-├── Materials/ # Materiales del escenario y la bola
-├── Prefabs/ # Prefabs de pickups
+├── Materials/ # Materiales del jugador, enemigo, suelo...
+├── Prefabs/ # Prefabs de pickups u objetos
 ├── Scenes/
-│ └── MiniGame.unity
+│ ├── Menu.unity # Menú inicial
+│ └── MiniGame.unity # Escena principal del juego
 ├── Scripts/
-│ ├── PlayerController.cs
-│ ├── CameraController.cs
-│ ├── EnemyMovement.cs
-│ └── Rotator.cs
+│ ├── CameraController.cs # Movimiento de cámara
+│ ├── EnemyMovement.cs # IA del enemigo (NavMesh + NavMeshAgent)
+│ ├── PlayerController.cs # Control del jugador, salto y recogidas
+│ ├── Rotator.cs # Rotación de los pickups
+│ ├── SceneController.cs # Cambio de escenas (Menu ↔ MiniGame)
+│ └── UIManager.cs # Gestión de botones y reinicios
 └── UI/
-└── TextMeshPro objects
+└── TextMesh Pro/ # Contadores y mensajes
 
 
 
@@ -66,6 +84,16 @@ Hace girar los pickups para darles dinamismo visual.
 ### `EnemyMovement.cs`
 Controla la inteligencia artificial del enemigo mediante NavMeshAgent.  
 Persigue al jugador y reinicia la partida al colisionar con él.
+
+### `UIManager.cs`
+Controla la UI del juego:
+- Botón para reiniciar la partida
+- Activación de elementos UI según el estado del juego
+
+### `SceneController.cs`
+Gestiona los cambios de escena:
+- Ir desde el menú al juego
+- Volver del juego al menú
 
 ---
 
